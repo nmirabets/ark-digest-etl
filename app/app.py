@@ -41,13 +41,15 @@ if "messages" not in st.session_state.keys():
 st.title("🦙 ADA - Ark Data Assistant")
 st.caption("This app is a demo as how LlaMA2 can be used to create a data assistant that fetches data from a database.")
 
-sample_prompt = st.button('Use example prompt')
-if sample_prompt:
-    st.session_state.messages.append({"role": "user", "content": "Get data since september 1st, 2023 for ARKG fund."})
+col1, col2 = st.columns(2)
+with col2:
+    sample_prompt = st.button('Use example prompt!')
+    if sample_prompt:
+       st.session_state.messages.append({"role": "user", "content": "Get data since september 1st, 2023 for ARKG fund."})
 
-def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": initial_prompt}]
-st.button('Clear Chat History', on_click=clear_chat_history)
+    def clear_chat_history():
+        st.session_state.messages = [{"role": "assistant", "content": initial_prompt}]
+    st.button('Clear Chat History', on_click=clear_chat_history)
 
 # Display or clear chat messages
 for message in st.session_state.messages:
